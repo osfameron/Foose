@@ -1,1 +1,20 @@
 Foose is a project to bring functional programming niceties to Perl
+
+AIMS
+
+We aim to produce these functional niceties on two levels, one a perl library and secondly some Devel::Declare-ish magic to provide pleasing syntax.
+
+PERL AIMS
+1. Lazy lists library for Perl
+2. Proper, functional map and grep replacements
+3. Monad library with continuations support
+4. Currying and composition support
+5. More haskell-ish and lisp-ish functions that fit in with the above (in the vein of Language::Functional)
+6. Compile-time type checking in as far as is possible (matching up the user-defined types, I suspect)
+7. Some way of developing a synergy between Moose and functional programming.
+
+DEVEL::DECLARE AIMS
+1. Pleasing syntax for all of the above
+2. Interoperability with Moose
+3. Synergy between Moose and Foose
+
