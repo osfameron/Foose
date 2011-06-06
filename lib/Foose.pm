@@ -58,7 +58,7 @@ sub constructor {
                     });
                 }
                 else {
-                    return $attribute->get_value( $self->meta );
+                    return $attribute->get_value( $self );
                 }
             });
             $attribute->associate_method($method);
