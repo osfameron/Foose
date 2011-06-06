@@ -1,7 +1,5 @@
 package List;
 use Foose;
-use Data::Dumper;
-use feature 'say';
 
 constructor 'Empty';
 constructor Cons => (
@@ -9,14 +7,23 @@ constructor Cons => (
     safeTail => class_type('List')
 );
 
+package main;
+use Data::Dumper;
+
+use Test::More;
+
 my $list = List::Cons->new(
     safeHead => "foo",
     safeTail => List::Empty->new
 );
-say Dumper($list);
+is ($list->safeHead, 'foo');
+diag Dumper($list);
 
 my $list2 = $list->safeHead('bar');
-say Dumper($list2);
+is ($list2->safeHead, 'bar');
+diag Dumper($list2);
+
+done_testing;
 
 # TODO: munge BUILD!
 # my $list3 = List::Cons->new( [2, List::Empty->new ] ); 
