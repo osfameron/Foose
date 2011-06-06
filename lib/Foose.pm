@@ -52,10 +52,10 @@ sub constructor {
             my $method = $meta->add_method( $name => sub {
                 my $self = shift;
                 if (@_) {
-                    return $self->new({
-                        %$self,
+                    return $meta->clone_object(
+                        $self,
                         $attribute->name => shift,
-                    });
+                    );
                 }
                 else {
                     return $attribute->get_value( $self );
