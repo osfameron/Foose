@@ -13,10 +13,10 @@ use Data::Dumper;
 use Test::More;
 use Test::Exception;
 
-my $list = List::Cons->new(
+my $list = List::Cons->new({
     safeHead => "foo",
     safeTail => List::Empty->new
-);
+});
 is ($list->safeHead, 'foo');
 
 my $list2 = $list->safeHead('bar');
@@ -29,7 +29,7 @@ dies_ok {
 
 done_testing;
 
-# TODO: munge BUILD!
-# my $list3 = List::Cons->new( [2, List::Empty->new ] ); 
+# YOW. This should invoke ::PositionalBuilder
+my $list3 = List::Cons->new( [2, List::Empty->new ] ); 
 
 1;

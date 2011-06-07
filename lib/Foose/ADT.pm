@@ -13,6 +13,10 @@ Moose::Exporter->setup_import_methods(
     with_meta => [qw/ constructor /],
     as_is     => [ qw/ Tuple ArrayRef Any /],
 
+    # as per http://search.cpan.org/~flora/Moose-2.0007/lib/Moose/Cookbook/Extending/Recipe2.pod
+    # though this doesn't seem to work
+    base_class_roles => ['Foose::ADT::Role::PositionalBuilder'],
+
     # note, we have to export MooseX::ABC *first*, not sure why
     also      => [qw/
         MooseX::ABC
