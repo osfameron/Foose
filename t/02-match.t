@@ -11,7 +11,7 @@ constructor Cons => (
 sub fromList {
     my ($class, @list) = @_;
     reduce { no warnings 'once';
-        List::Cons->new([$b, $a]) 
+        List::Cons->new($b, $a) 
         }
         List::Empty->new,
         reverse @list; # in absence of a foldr...
@@ -38,9 +38,9 @@ use Moose::Util::TypeConstraints;
 my $list = List->fromList(1..5);
 is $list->safeHead, 1, 'sanity';
 
-my $match = Match::Match->new([ class_type('List') ]);
-my $match2 = Match::Bind->new([ 'foo', $match ]);
-my $match3 = Match::Group->new([[ $match, $match2 ]]);
+my $match = Match::Match->new (class_type('List'));
+my $match2 = Match::Bind->new ('foo', $match);
+my $match3 = Match::Group->new([ $match, $match2 ]);
 say Dumper($match3);
 
 

@@ -13,10 +13,10 @@ use Test::More;
 use Test::Exception;
 use feature 'say';
 
-my $list = List::Cons->new(
+my $list = List::Cons->new({
     safeHead => "foo",
     safeTail => List::Empty->new
-);
+});
 
 is $list->safeHead, 'foo', 'simple test';
 
@@ -28,7 +28,7 @@ dies_ok {
     my $error = List->new();
 } "Cannot instantiate base class";
 
-my $list3 = List::Cons->new([ 'baz', List::Empty->new  ]); 
+my $list3 = List::Cons->new('baz', List::Empty->new); 
 is $list3->safeHead, 'baz', 'Positional arguments work!';
 
 done_testing;

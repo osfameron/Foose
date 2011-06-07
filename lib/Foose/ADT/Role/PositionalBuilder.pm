@@ -7,8 +7,11 @@ around BUILDARGS => sub {
     my $orig = shift;
     my $class = shift;
 
-    if (@_ == 1 and ref $_[0] and ref $_[0] eq 'ARRAY') {
-        my @args = @{ $_[0] };
+    if (@_ == 1 and ref $_[0] and ref $_[0] eq 'HASH') {
+        return $class->$orig(@_);
+    }
+    else {
+        my @args = @_;
         my @attribute_names = 
             map $_->name,
             sort { $a->insertion_order <=> $b->insertion_order }
@@ -20,7 +23,6 @@ around BUILDARGS => sub {
         my %args = zip @attribute_names, @args;
         return $class->$orig(\%args);
     }
-    return $class->$orig(@_);
 };
 
 1;
