@@ -6,14 +6,14 @@ use Moose::Exporter;
 
 use Moose::Util::TypeConstraints;
 use MooseX::Types::Structured qw(Tuple);
-use MooseX::Types::Moose      qw(ArrayRef Any);
+use MooseX::Types::Moose      qw(ArrayRef Any Str);
 use Data::UUID;
 
 use Foose::ADT::Role::PositionalBuilder;
 
 Moose::Exporter->setup_import_methods(
     with_meta => [qw/ constructor /],
-    as_is     => [ qw/ Tuple ArrayRef Any /],
+    as_is     => [ qw/ Tuple ArrayRef Any Str/],
 
     # note, we have to export MooseX::ABC *first*, not sure why
     also      => [qw/
@@ -29,13 +29,13 @@ sub constructor {
     my $parent_name = $meta->name;
     my $child_name  = join '::', $parent_name, $name;
 
-    my $subclass = $meta->create(
+    my $subclass_meta = $meta->create(
         $child_name,
         superclasses => [ $parent_name ],
     );
     # annoyingly, you can't (yet?) add these in the ->create above
     Moose::Util::MetaRole::apply_base_class_roles(
-        for   => $subclass,
+        for   => $subclass_meta,
         roles => ['Foose::ADT::Role::PositionalBuilder'],
     );
 
@@ -56,15 +56,15 @@ sub constructor {
             $create_accessor++;
         }
 
-        my $attribute = $meta->add_attribute( $name,
+        my $attribute = $subclass_meta->add_attribute( $name,
             is  => 'bare',
             isa => $field );
 
         if ($create_accessor) {
-            my $method = $meta->add_method( $name => sub {
+            my $method = $subclass_meta->add_method( $name => sub {
                 my $self = shift;
                 if (@_) {
-                    return $meta->clone_object(
+                    return $subclass_meta->clone_object(
                         $self,
                         $attribute->name => shift,
                     );

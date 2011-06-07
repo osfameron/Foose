@@ -11,11 +11,13 @@ package main;
 
 use Test::More;
 use Test::Exception;
+use feature 'say';
 
 my $list = List::Cons->new(
     safeHead => "foo",
     safeTail => List::Empty->new
 );
+
 is $list->safeHead, 'foo', 'simple test';
 
 my $list2 = $list->safeHead('bar');
