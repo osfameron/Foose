@@ -1,7 +1,7 @@
 package List;
 use Foose;
 
-constructor 'Empty';
+constructor Empty => ();
 constructor Cons => (
     safeHead => Any,
     safeTail => class_type('List')
@@ -17,11 +17,10 @@ my $list = List::Cons->new(
     safeTail => List::Empty->new
 );
 is ($list->safeHead, 'foo');
-diag Dumper($list);
 
 my $list2 = $list->safeHead('bar');
-is ($list2->safeHead, 'bar');
-diag Dumper($list2);
+is ($list2->safeHead, 'bar', 'modified');
+is ($list->safeHead,  'foo', 'original unchanged');
 
 done_testing;
 
