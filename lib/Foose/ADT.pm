@@ -1,6 +1,7 @@
-package Foose;
+package Foose::ADT;
 
 use Moose ();
+require MooseX::ABC;
 use Moose::Exporter;
 
 use Moose::Util::TypeConstraints;
@@ -11,8 +12,12 @@ use Data::UUID;
 Moose::Exporter->setup_import_methods(
     with_meta => [qw/ constructor /],
     as_is     => [ qw/ Tuple ArrayRef Any /],
+
+    # note, we have to export MooseX::ABC *first*, not sure why
     also      => [qw/
-        Moose Moose::Util::TypeConstraints
+        MooseX::ABC
+        Moose 
+        Moose::Util::TypeConstraints
     /],
 );
 

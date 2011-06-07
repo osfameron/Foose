@@ -1,5 +1,5 @@
 package List;
-use Foose;
+use Foose::ADT;
 
 constructor Empty => ();
 constructor Cons => (
@@ -11,6 +11,7 @@ package main;
 use Data::Dumper;
 
 use Test::More;
+use Test::Exception;
 
 my $list = List::Cons->new(
     safeHead => "foo",
@@ -21,6 +22,10 @@ is ($list->safeHead, 'foo');
 my $list2 = $list->safeHead('bar');
 is ($list2->safeHead, 'bar', 'modified');
 is ($list->safeHead,  'foo', 'original unchanged');
+
+dies_ok {
+    my $error = List->new();
+} "Cannot instantiate base class";
 
 done_testing;
 
