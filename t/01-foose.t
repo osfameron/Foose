@@ -8,7 +8,6 @@ constructor Cons => (
 );
 
 package main;
-use Data::Dumper;
 
 use Test::More;
 use Test::Exception;
