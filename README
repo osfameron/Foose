@@ -5,16 +5,23 @@ AIMS
 We aim to produce these functional niceties on two levels, one a perl library and secondly some Devel::Declare-ish magic to provide pleasing syntax.
 
 PERL AIMS
-1. Lazy lists library for Perl
-2. Proper, functional map and grep replacements
-3. Monad library with continuations support
-4. Currying and composition support
-5. More haskell-ish and lisp-ish functions that fit in with the above (in the vein of Language::Functional)
-6. Compile-time type checking in as far as is possible (matching up the user-defined types, I suspect)
-7. Some way of developing a synergy between Moose and functional programming.
+* Lightweight declaration of Algebraic Data Types
+* Compile-time type checking in as far as is possible (matching up the user-defined types, I suspect)
+* Lazy lists library for Perl
+* Proper, functional map and grep replacements
+* Monad library with continuations support
+* Currying and composition support
+* More haskell-ish and lisp-ish functions that fit in with the above (in the vein of Language::Functional)
+* Some way of developing a synergy between Moose and functional programming.
 
-DEVEL::DECLARE AIMS
-1. Pleasing syntax for all of the above
-2. Interoperability with Moose
-3. Synergy between Moose and Foose
+SUGAR LAYER AIMS
+* Pleasing syntax for all of the above
+* Interoperability with Moose
+* Synergy between Moose and Foose
 
+Currently, the first of the Perl aims is in progress, with C<Foose::ADT>
+
+SEE ALSO
+* https://github.com/osfameron/pure-fp-book
+The sample code is being written with Moose, and some of the lessons learnt from
+this will hopefully be useful in testing the design and assumptions of Foose!
