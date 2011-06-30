@@ -1,0 +1,4 @@
+17:28 <@Zefram> perl -lwe 'use B::CallChecker qw(cv_set_call_checker 
+                ck_entersub_args_proto); sub foo(&) { print $_[0]->(); } BEGIN 
+                { cv_set_call_checker(\&foo, \&ck_entersub_args_proto, \"\$"); 
+                } sub bar { return sub { 2 } } foo { 1 }; foo bar();'
