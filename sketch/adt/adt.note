@@ -1,0 +1,19 @@
+=head1 SUGAR
+
+FROM:
+
+    type List ($a) =
+        nil
+      | list of $a * List ($a);
+    }
+
+TO:
+
+    {
+    type List => my $a; define List =>
+        nil of ()
+      | list of $a * List($a);
+    }
+
+=cut
+
